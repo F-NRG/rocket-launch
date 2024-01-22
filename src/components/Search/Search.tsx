@@ -2,15 +2,12 @@
 import { FC } from 'react';
 
 type Props = {
-  submit: (e: Event) => void;
+  submit?: (e: Event) => void;
 };
 
 const Search: FC<Props> = ({ submit }) => {
   return (
-    <form
-      className="w-full"
-      action={submit}
-    >
+    <form className="w-full">
       <div className="flex">
         <label
           htmlFor="search-dropdown"

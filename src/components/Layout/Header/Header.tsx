@@ -12,17 +12,19 @@ const Navigation: FC<Props> = ({ navItems }) => {
   const linkClass = 'p-1 border border-grey-200 rounded-md hover:bg-gray-300 text-white';
 
   return (
-    <nav className="p-5 gap-3 flex justify-center bg-gray-800">
-      {navItems.map((navItem) => (
-        <Link
-          key={navItem.name}
-          className={pathname === navItem.path ? linkClass + ' bg-gray-100 text-gray-800' : linkClass}
-          href={navItem.path}
-        >
-          {navItem.name}
-        </Link>
-      ))}
-    </nav>
+    <header>
+      <nav className="p-5 gap-3 flex justify-center bg-gray-800">
+        {navItems.map((navItem) => (
+          <Link
+            key={navItem.name}
+            className={pathname === navItem.path ? linkClass + ' bg-gray-100 text-gray-800' : linkClass}
+            href={navItem.path}
+          >
+            {navItem.name}
+          </Link>
+        ))}
+      </nav>
+    </header>
   );
 };
 

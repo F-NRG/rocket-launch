@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import Navigation from 'components/Navigation/Navigation';
+import Header from 'components/Layout/Header/Header';
 
 export const metadata: Metadata = {
   title: 'Rocket launch',
@@ -15,14 +15,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <header>
-          <Navigation
-            navItems={[
-              { name: 'Home', path: '/' },
-              { name: 'About', path: '/about' },
-            ]}
-          />
-        </header>
+        <Header
+          navItems={[
+            { name: 'Home', path: '/' },
+            { name: 'About', path: '/about' },
+          ]}
+        />
         {children}
       </body>
     </html>
