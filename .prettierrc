@@ -7,5 +7,6 @@
   "useTabs": false,
   "quoteProps": "consistent",
   "endOfLine": "auto",
-  "singleAttributePerLine": true
+  "singleAttributePerLine": true,
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

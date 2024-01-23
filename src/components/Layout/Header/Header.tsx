@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 type Props = {
   navItems: Array<{ name: string; path: string }>;
@@ -13,7 +13,7 @@ const Navigation: FC<Props> = ({ navItems }) => {
 
   return (
     <header>
-      <nav className="p-5 gap-3 flex justify-center bg-gray-800">
+      <nav className="flex justify-center gap-3 bg-gray-800 p-5">
         {navItems.map((navItem) => (
           <Link
             key={navItem.name}

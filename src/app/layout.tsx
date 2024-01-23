@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import ClientLayout from './client-layout';
 import Header from 'components/Layout/Header/Header';
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default function RootLayout({
             { name: 'About', path: '/about' },
           ]}
         />
-        {children}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
