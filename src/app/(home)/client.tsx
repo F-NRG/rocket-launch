@@ -4,20 +4,20 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/navigation';
 import LaunchList from 'components/LaunchList/LaunchList';
 import { getLaunches } from 'utils/api/launches/launches';
-import type { Launch } from 'types/Launch';
 
-type Props = { launches: Array<Launch> };
-
-const LaunchListClient: NextPage<Props> = ({ launches }) => {
-  const { data } = useQuery({ queryKey: ['launches'], queryFn: getLaunches });
+const LaunchListClient: NextPage = () => {
+  const { data, isLoading } = useQuery({ queryKey: ['launches'], queryFn: getLaunches });
   const router = useRouter();
 
+  if (isLoading) return <div>Loading...</div>;
   return (
     <div>
-      <LaunchList
-        list={data ?? launches}
-        router={router}
-      />
+      {data ? (
+        <LaunchList
+          list={data}
+          router={router}
+        />
+      ) : null}
     </div>
   );
 };
