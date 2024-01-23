@@ -16,12 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header
-          navItems={[
-            { name: 'Home', path: '/' },
-            { name: 'About', path: '/about' },
-          ]}
-        />
+        <Header navItems={[{ name: 'Home', path: '/' }]} />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
