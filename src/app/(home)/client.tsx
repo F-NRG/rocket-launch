@@ -9,12 +9,8 @@ import type { Launch } from 'types/Launch';
 type Props = { launches: Array<Launch> };
 
 const LaunchListClient: NextPage<Props> = ({ launches }) => {
-  const { data, isLoading, isError } = useQuery({ queryKey: ['launches'], queryFn: getLaunches });
+  const { data } = useQuery({ queryKey: ['launches'], queryFn: getLaunches });
   const router = useRouter();
-
-  if (isLoading) return <div className="flex w-full justify-center p-5">Loading...</div>;
-
-  if (isError) return <div>Something went wrong</div>;
 
   return (
     <div>

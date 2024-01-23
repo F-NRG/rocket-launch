@@ -9,7 +9,7 @@ type Props = {
 
 const LaunchCard: FC<Props> = ({ launch, onClick }) => (
   <ul
-    className="max-w-xs cursor-pointer rounded shadow-lg"
+    className="max-w-xs cursor-pointer rounded shadow-lg hover:shadow-md"
     onClick={onClick}
   >
     <Image
