@@ -7,6 +7,9 @@ type Props = {
   onClick: () => void;
 };
 
+const toReadableDate = (date: string) => (
+  <>{new Date(date).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' }) ?? 'No date available'} </>
+);
 const LaunchCard: FC<Props> = ({ launch, onClick }) => (
   <ul
     className=" max-w-xs cursor-pointer rounded shadow-md hover:shadow-xl"
@@ -30,15 +33,15 @@ const LaunchCard: FC<Props> = ({ launch, onClick }) => (
       </p>
       <p className="text-base text-gray-700">
         <span className="font-bold">date:</span>
-        {launch.date_local ?? 'No date available'}
+        {toReadableDate(launch.date_local)}
       </p>
       <p className="text-base text-gray-700">
         <span className="font-bold">success:</span>
-        {launch.success ?? 'Not available'}
+        {launch.success?.toString() ?? 'Not available'}
       </p>
       <p className="text-base text-gray-700">
         <span className="font-bold">upcoming:</span>
-        {launch.upcoming ?? 'No upcoming planned'}
+        {launch.upcoming?.toString() ?? 'No upcoming planned'}
       </p>
     </div>
   </ul>

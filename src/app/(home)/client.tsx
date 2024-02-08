@@ -24,15 +24,27 @@ const LaunchListClient: NextPage = () => {
 
   const handleFilter = (e: ChangeEvent<HTMLInputElement>) => {
     const filter = e.target.value;
-    console.log('filter', filter);
-    if (filter === 'upcoming') {
-      const newList = filteredData?.toSorted();
+
+    if (filter === 'upcoming' && e.target.checked) {
+      const newList = filteredData?.toSorted((a, b) => {
+        console.log(a.upcoming, b.upcoming);
+        if (a.upcoming && !b.upcoming) return -1;
+        if (b.upcoming && !a.upcoming) return 1;
+        return 0;
+      });
       setFilteredData(newList);
-    } else if (filter === 'success') {
-      const newList = filteredData?.toSorted((launch) => launch.success);
+    }
+    if (filter === 'success' && e.target.checked) {
+      const newList = filteredData?.toSorted((a, b) => {
+        console.log(a.success, b.success);
+        if (a.success && !b.success) return -1;
+        if (b.success && !a.success) return 1;
+        return 0;
+      });
       setFilteredData(newList);
-    } else if (filter === 'date') {
-      const newList = filteredData?.toSorted((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    }
+    if (filter === 'date' && e.target.checked) {
+      const newList = filteredData?.toSorted((a, b) => new Date(a.date_local).getTime() - new Date(b.date_local).getTime());
       setFilteredData(newList);
     }
   };
