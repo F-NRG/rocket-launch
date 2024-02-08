@@ -12,6 +12,7 @@ const LaunchListClient: NextPage = () => {
   const { data, isLoading } = useQuery({ queryKey: ['launches'], queryFn: getLaunches });
   const [filteredData, setFilteredData] = useState(data);
   const router = useRouter();
+  const filters = ['date', 'success', 'upcoming'];
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.value === '') {
@@ -56,6 +57,7 @@ const LaunchListClient: NextPage = () => {
       <Search
         onSearch={handleSearch}
         onFilter={handleFilter}
+        filters={filters}
       />
       {filteredData ? (
         <LaunchList

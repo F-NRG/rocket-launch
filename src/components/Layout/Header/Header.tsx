@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import type { FC } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 type Props = {
   navItems: Array<{ name: string; path: string }>;
@@ -9,7 +10,6 @@ type Props = {
 
 const Navigation: FC<Props> = ({ navItems }) => {
   const pathname = usePathname();
-  const linkClass = 'p-1 border rounded-md hover:bg-gray-300 text-white hover:text-gray-800';
 
   return (
     <header>
@@ -17,7 +17,7 @@ const Navigation: FC<Props> = ({ navItems }) => {
         {navItems.map((navItem) => (
           <Link
             key={navItem.name}
-            className={pathname === navItem.path ? linkClass + ' bg-blue-700 text-gray-800' : linkClass}
+            className={twMerge('rounded-md border p-1 text-white hover:bg-gray-300 hover:text-gray-800', pathname === navItem.path && 'bg-blue-700')}
             href={navItem.path}
           >
             {navItem.name.toUpperCase()}

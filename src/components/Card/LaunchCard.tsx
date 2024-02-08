@@ -1,18 +1,16 @@
 import type { FC } from 'react';
 import Image from 'next/image';
 import type { Launch } from 'types/Launch';
+import { toReadableDate } from 'utils/toReadableDate';
 
 type Props = {
   launch: Launch;
   onClick: () => void;
 };
 
-const toReadableDate = (date: string) => (
-  <>{new Date(date).toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' }) ?? 'No date available'} </>
-);
 const LaunchCard: FC<Props> = ({ launch, onClick }) => (
   <ul
-    className=" max-w-xs cursor-pointer rounded shadow-md hover:shadow-xl"
+    className="max-w-xs cursor-pointer rounded shadow-md hover:shadow-xl"
     onClick={onClick}
   >
     <div className="flex justify-center">
@@ -33,7 +31,7 @@ const LaunchCard: FC<Props> = ({ launch, onClick }) => (
       </p>
       <p className="text-base text-gray-700">
         <span className="font-bold">date:</span>
-        {toReadableDate(launch.date_local)}
+        {toReadableDate(launch.date_local) ?? 'No date available'}
       </p>
       <p className="text-base text-gray-700">
         <span className="font-bold">success:</span>

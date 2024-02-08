@@ -4,10 +4,12 @@ import Image from 'next/image';
 import { submitForm } from 'actions/submitForm';
 
 type Props = {
-  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  filters: Array<string>;
   onFilter: (e: ChangeEvent<HTMLInputElement>) => void | undefined;
+  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
 };
-const Search: FC<Props> = ({ onSearch, onFilter }) => {
+
+const Search: FC<Props> = ({ onSearch, onFilter, filters }) => {
   return (
     <form
       action={submitForm}
@@ -28,7 +30,10 @@ const Search: FC<Props> = ({ onSearch, onFilter }) => {
           <SubmitButton />
         </div>
       </div>
-      <FilterButton onFilter={onFilter} />
+      <FilterButtons
+        onFilter={onFilter}
+        filters={filters}
+      />
     </form>
   );
 };
@@ -51,9 +56,7 @@ const SubmitButton = () => (
   </button>
 );
 
-const filters = ['date', 'success', 'upcoming'];
-
-const FilterButton = ({ onFilter }: { onFilter: (e: ChangeEvent<HTMLInputElement>) => void }) => (
+const FilterButtons = ({ onFilter, filters }: { filters: Array<string>; onFilter: (e: ChangeEvent<HTMLInputElement>) => void | undefined }) => (
   <fieldset className="flex gap-2">
     {filters.map((filter, index) => (
       <div
@@ -61,7 +64,7 @@ const FilterButton = ({ onFilter }: { onFilter: (e: ChangeEvent<HTMLInputElement
         className=" flex gap-1"
       >
         <input
-          type="checkbox"
+          type="radio"
           id={filter}
           name="filter"
           value={filter}
