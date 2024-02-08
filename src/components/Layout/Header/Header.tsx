@@ -9,7 +9,7 @@ type Props = {
 
 const Navigation: FC<Props> = ({ navItems }) => {
   const pathname = usePathname();
-  const linkClass = 'p-1 border border-grey-200 rounded-md hover:bg-gray-300 text-white';
+  const linkClass = 'p-1 border rounded-md hover:bg-gray-300 text-white hover:text-gray-800';
 
   return (
     <header>
@@ -17,10 +17,10 @@ const Navigation: FC<Props> = ({ navItems }) => {
         {navItems.map((navItem) => (
           <Link
             key={navItem.name}
-            className={pathname === navItem.path ? linkClass + ' bg-gray-100 text-gray-800' : linkClass}
+            className={pathname === navItem.path ? linkClass + ' bg-blue-700 text-gray-800' : linkClass}
             href={navItem.path}
           >
-            {navItem.name}
+            {navItem.name.toUpperCase()}
           </Link>
         ))}
       </nav>

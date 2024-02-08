@@ -10,7 +10,7 @@ type Props = {
 
 const LaunchList: FC<Props> = ({ list, router }) => {
   return (
-    <li className="flex  flex-wrap gap-2 p-4">
+    <li className="flex  flex-wrap justify-center gap-2 p-4">
       {list.map((launch) => (
         <LaunchCard
           key={launch.id}
