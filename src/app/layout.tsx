@@ -21,7 +21,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className="m-8 ">
         <Header navItems={[{ name: 'Home', path: '/' }]} />
         <ClientLayout deHydratedState={deHydratedState}>{children}</ClientLayout>
       </body>

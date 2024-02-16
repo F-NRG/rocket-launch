@@ -1,4 +1,6 @@
-module.exports = {
+import type { Config } from 'jest';
+
+const config: Config = {
   // The root of your source code, typically /src
   // `<rootDir>` is a token Jest substitutes
   roots: ['<rootDir>/src'],
@@ -11,3 +13,4 @@ module.exports = {
 
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 };
+export { config };

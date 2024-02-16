@@ -7,6 +7,7 @@ import { useState } from 'react';
 import LaunchList from 'components/LaunchList/LaunchList';
 import { getLaunches } from 'utils/api/launches/launches';
 import Search from 'components/Search/Search';
+import { Spinner } from 'components/Spinner/Spinner';
 
 const LaunchListClient: NextPage = () => {
   const { data, isLoading } = useQuery({ queryKey: ['launches'], queryFn: getLaunches });
@@ -50,7 +51,7 @@ const LaunchListClient: NextPage = () => {
     }
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="w-full p-2">

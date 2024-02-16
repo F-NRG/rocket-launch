@@ -2,6 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import type { NextPage } from 'next';
+import { Spinner } from 'components/Spinner/Spinner';
 import { getLaunches } from 'utils/api/launches/launches';
 
 type Props = { id: string };
@@ -10,7 +11,7 @@ const LaunchDetail: NextPage<Props> = ({ id }) => {
   const { data, isLoading } = useQuery({ queryKey: ['launches'], queryFn: getLaunches });
   const launch = data?.find((launch) => launch.id === id);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="flex w-full flex-col justify-center">

@@ -5,7 +5,7 @@ import { submitForm } from 'actions/submitForm';
 
 type Props = {
   filters: Array<string>;
-  onFilter: (e: ChangeEvent<HTMLInputElement>) => void | undefined;
+  onFilter: (e: ChangeEvent<HTMLInputElement>) => void;
   onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -13,27 +13,26 @@ const Search: FC<Props> = ({ onSearch, onFilter, filters }) => {
   return (
     <form
       action={submitForm}
-      className="w-full"
+      className=" flex w-full justify-center p-4"
     >
-      <div className="flex pb-2">
-        <div className="relative w-full">
+      <div className="flex w-3/5 flex-col gap-2 focus-visible:border-secondary">
+        <div className="relative w-full focus-visible:border-secondary">
           <input
             type="search"
             id="search-dropdown"
-            className="z-20 block w-full rounded-e-lg border border-s-2 border-gray-300 border-s-gray-50
-            bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600
-            dark:border-s-gray-700  dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500"
+            className="z-20 block w-full rounded-lg border border-s-2 border-gray-300
+            border-s-gray-50 bg-primary p-2.5 text-sm text-tertiary placeholder:text-tertiary focus-visible:border-secondary"
             placeholder="Search for a launch"
             onChange={onSearch}
             required
           />
           <SubmitButton />
         </div>
+        <FilterButtons
+          onFilter={onFilter}
+          filters={filters}
+        />
       </div>
-      <FilterButtons
-        onFilter={onFilter}
-        filters={filters}
-      />
     </form>
   );
 };
@@ -41,9 +40,9 @@ const Search: FC<Props> = ({ onSearch, onFilter, filters }) => {
 const SubmitButton = () => (
   <button
     type="reset"
-    className="absolute end-0 top-0 h-full rounded-e-lg border border-blue-700 bg-blue-700 p-2.5 text-sm font-medium
-      text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600
-      dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    className="absolute end-0 top-0 h-full rounded-e-lg border-inherit bg-tertiary p-2.5  text-sm
+      font-medium hover:bg-secondary focus:bg-secondary focus:text-tertiary
+      focus:outline-none focus:ring-4"
   >
     <Image
       src="assets/svg/cross.svg"
@@ -56,8 +55,9 @@ const SubmitButton = () => (
   </button>
 );
 
-const FilterButtons = ({ onFilter, filters }: { filters: Array<string>; onFilter: (e: ChangeEvent<HTMLInputElement>) => void | undefined }) => (
-  <fieldset className="flex gap-2">
+const FilterButtons = ({ onFilter, filters }: { filters: Array<string>; onFilter: (e: ChangeEvent<HTMLInputElement>) => void }) => (
+  <fieldset className=" flex gap-2">
+    <p>Filter: </p>
     {filters.map((filter, index) => (
       <div
         key={index}

@@ -13,11 +13,14 @@ const Navigation: FC<Props> = ({ navItems }) => {
 
   return (
     <header>
-      <nav className="flex justify-center gap-3 bg-gray-800 p-5">
+      <nav className="bg-primary flex gap-3 rounded-lg p-5">
         {navItems.map((navItem) => (
           <Link
             key={navItem.name}
-            className={twMerge('rounded-md border p-1 text-white hover:bg-gray-300 hover:text-gray-800', pathname === navItem.path && 'bg-blue-700')}
+            className={twMerge(
+              'text:primary hover:bg-secondary focus:bg-secondary rounded-md px-4 py-2  hover:text-gray-800',
+              pathname === navItem.path && 'bg-tertiary'
+            )}
             href={navItem.path}
           >
             {navItem.name.toUpperCase()}
